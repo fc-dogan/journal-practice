@@ -5,10 +5,8 @@ function Journal(title, body) {
   this.consonant = 0,
   this.word = 0,
   this.totalWords = "",
-  this.teaser = "",
-  this.firstSentence = ""
+  this.teaser = ""
 }
-
 
 Journal.prototype.combineWords = function() {
   this.totalWords = this.title.concat(this.body);
@@ -31,20 +29,17 @@ Journal.prototype.countCharacters = function() {
   } 
 }
 
-
-
 Journal.prototype.getTeaser = function() {
   this.teaser = this.body.split(".");
   var firstSentence = this.teaser[0];
   var splitFirstSentence = firstSentence.split(" ");
   if (splitFirstSentence.length >= 8) {
     this.splitFirstSentence = splitFirstSentence.slice(0, 8).join(" ");
-    this.splitFirstSentence;
+    this.teaser = this.splitFirstSentence;
   }else {
-    this.firstSentence = this.teaser[0];
+    this.teaser = this.teaser[0];
   } 
 }
-
 
 
 $(document).ready(function () {
@@ -58,6 +53,10 @@ $(document).ready(function () {
     entry.countCharacters();
     entry.getTeaser();
     console.log(entry);
-    //console.log(combine);
+
+    $(".numberOfWords").html(entry.word);
+    $(".numberOfVowels").html(entry.vowel);
+    $(".numberOfConsonants").html(entry.consonant);
+    $(".teaser").html(entry.teaser);
   });
 });
